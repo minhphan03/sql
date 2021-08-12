@@ -56,3 +56,32 @@ select enteredby, count(*) as publishes
 from insurance.reservingtool
 where IsPublished = 1
 group by enteredby;
+
+select * from insurance.patient order by businessname;
+
+select businessname, count(BusinessName) as c
+from insurance.patient
+where businessname like '%inc%'
+group by BusinessName
+order by c desc
+limit 10;
+
+select businessname, count(BusinessName) as c
+from insurance.patient
+group by BusinessName
+order by c desc
+limit 10;
+
+select * from insurance.attachment
+where enteredby in ('qkemp','unassigned','kgus');
+
+-- having is the where syntax for aggregate functions
+-- put where at the end will give a syntax error so use having
+
+select enteredby, count(*) as publishes
+from insurance.reservingtool
+where IsPublished = 1
+group by enteredby
+having publishes > 50
+order by publishes desc;
+
