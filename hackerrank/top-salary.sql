@@ -1,0 +1,11 @@
+-- solution 1
+SELECT SALARY*MONTHS AS EMPLOYEES, COUNT(*)
+FROM EMPLOYEE
+GROUP BY 1
+ORDER BY EMPLOYEES DESC LIMIT 1;
+
+-- solution 2
+-- You cannot use group functions in a where clause, so mask it with a select statement
+SELECT MAX(SALARY*MONTHS), COUNT(*)
+FROM EMPLOYEE
+WHERE (SALARY*MONTHS)= (SELECT MAX(SALARY*MONTHS) FROM EMPLOYEE)
