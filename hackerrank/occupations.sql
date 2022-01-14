@@ -7,7 +7,7 @@ SET @c1=0, @c2=0, @c3=0, @c4=0;
 SELECT min(Doctor), min(Professor), min(Singer), min(Actor)
 FROM 
 (SELECT case
--- count and put each count track into a new column
+-- count and put each count track into a new column call RowNumber
     when Occupation='Doctor' then (@c1=@c1+1)
     when Occupation='Professor' then (@c4=@c4+1)
     when Occupation='Actor' then (@c2=@c2+1)
@@ -19,6 +19,8 @@ FROM
     case when Occupation='Singer' then Name end as Singer,
     case when Occupation='Professor' then Name end as Professor
 FROM OCCUPATIONS ORDER BY Name) temp
+
+-- return the min (eliminate the null values) values from each row 
 GROUP BY RowNumber;
 
 
